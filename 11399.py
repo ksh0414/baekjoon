@@ -1,3 +1,4 @@
+#https://acmicpc.net/problem/11399
 n = int(input())
 data = list(map(int, input().split()))
 data.sort()
