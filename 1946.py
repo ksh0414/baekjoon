@@ -1,3 +1,4 @@
+#배열을 생성해서 접근하는 것이 더 빠르다
 import sys
 input = sys.stdin.readline
 
