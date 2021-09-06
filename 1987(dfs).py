@@ -1,3 +1,4 @@
+#while을 통한 bfs 빠르다
 import sys
 input = sys.stdin.readline
 D = ((1, 0), (0, 1), (-1, 0), (0, -1))
