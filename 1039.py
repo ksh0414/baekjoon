@@ -4,6 +4,14 @@ n, k = input().split()
 l = len(n)
 k = int(k)
 
+def same_num_check(arr):
+    nums = []
+    for x in arr:
+        if x in nums:
+            return True
+        nums.append(x)
+    return False
+
 if l < 2 or n[1:] == '0':#swap을 할 수 없는 경우
     ans = -1
 else:#할 수 있는 경우
@@ -18,6 +26,7 @@ else:#할 수 있는 경우
             result = tmp #그 케이스의 result를 저장
         if count <= 0 or start_idx >= l-1: #더이상 swap을 할 수 없다면
             continue #continue
+        
         for i in range(start_idx, l-1): #앞에서부터 swap할 수 있는 경우를 탐색
             max_value = tmp[i]
             max_idx = i
@@ -29,7 +38,7 @@ else:#할 수 있는 경우
                     max_idx = j
                 elif max_value == tmp[j]: #같은 숫자가 있다면
                     same_idx.append(j)
-                    same_num_in_result = True
+
             if max_idx != i: #i뒤에 더 큰 수가 있을 때만
                 for idx in same_idx:#각 숫자에 대한 case를 조사
                     tmp[i], tmp[idx] = tmp[idx], tmp[i]
@@ -37,7 +46,7 @@ else:#할 수 있는 경우
                     tmp[i], tmp[idx] = tmp[idx], tmp[i]
                 break
     #k > 0이면 result는 정렬된 상태, k==0이면 result를 출력
-    if not same_num_in_result and k%2: #안에 같은 숫자가 없고 나머지 횟수가 홀수라면
+    if not same_num_check(result) and k%2: #안에 같은 숫자가 없고 나머지 횟수가 홀수라면
         result[-1], result[-2] = result[-2], result[-1] #맨 뒤의 두 숫자를 교환
     ans = "".join([str(x) for x in result]) #같은 숫자가 있거나 나머지 횟수가 짝수라면 교환x
 
