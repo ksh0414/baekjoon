@@ -4,14 +4,6 @@ n, k = input().split()
 l = len(n)
 k = int(k)
 
-def same_num_check(arr):
-    nums = []
-    for x in arr:
-        if x in nums:
-            return True
-        nums.append(x)
-    return False
-
 if l < 2 or n[1:] == '0':#swap을 할 수 없는 경우
     ans = -1
 else:#할 수 있는 경우
