@@ -1,3 +1,5 @@
+#combinations이 백트레킹보다 빠르다 원소가 적어서 그런가..?
+
 import sys
 from itertools import combinations
 input = sys.stdin.readline
