@@ -16,32 +16,33 @@ order = 0
 group = []
 for x, y in walls:
     total = 0
-    union = []
+    union = [-1]
 
     for dx, dy in D:
         nx, ny = x+dx, y+dy
-        if not (0<=nx<n and 0<=ny<m):
+        if not (0<=nx<n and 0<=ny<m) or board[nx][ny] != 0:
             continue
 
-        if board[nx][ny] == 0 and visited[nx][ny][0] == 0:
+        if visited[nx][ny] == -1:
             q = deque([(nx, ny)])
+            visited[nx][ny] = order
             cnt = 1
             while q:
                 i, j = q.popleft()
                 for di, dj in D:
                     ni, nj = i+di, j+dj
-                    if 0<=ni<n and 0<=nj<m and board[ni][nj] == 0 and visited[ni][nj] == 0:
+                    if 0<=ni<n and 0<=nj<m and board[ni][nj] == 0 and visited[ni][nj] == -1:
                         visited[ni][nj] = order
                         q.append((ni, nj))
                         cnt += 1
-            order += 1
             group.append(cnt)
+            order += 1
 
-        if visited[nx][ny] not in union:
+        if group and visited[nx][ny] not in union:
             total += group[visited[nx][ny]]
             union.append(visited[nx][ny])
 
-    board[x][y] = (total+1)%10
+    board[x][y] = str((total+1)%10)
 
 for z in board:
     print("".join([str(x) for x in z]))
