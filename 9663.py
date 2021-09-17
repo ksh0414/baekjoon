@@ -1,32 +1,17 @@
-import sys
-sys.setrecursionlimit(10**9)
-
-def back_tracking(i, j, cnt):
+#배열을 통한 조건검사가 훨씬 빠르다
+def back_tracking(i):
     global ans
-    if cnt == n:
+    if i == n:
         ans += 1
         return
-
-    for x in range(i, n):
-        for y in range(n):
-            if check(x, y):
-                board[x][y] = 1
-                back_tracking(x, y, cnt+1)
-                board[x][y] = 0
-
-def check(i, j):
-    base = i-0
-    for x in range(n):
-        if board[i][x] == 1 or board[x][j] == 1:
-            return False
-        if 0<=j-base+x<n and board[x][j-base+x] == 1:
-            return False
-        if 0<=j+base-x<n and board[x][j+base-x] == 1:
-            return False
-    return True
+    for j in range(n):
+        if not (a[j] or b[i+j] or c[i-j+n-1]):
+            a[j] = b[i+j] = c[i-j+n-1] = True
+            back_tracking(i+1)
+            a[j] = b[i+j] = c[i-j+n-1] = False
 
 n = int(input())
-board = [[0]*n for _ in range(n)]
+a, b, c = [False]*n, [False]*(2*n-1), [False]*(2*n-1)
 ans = 0
-back_tracking(0, 0, 0)
+back_tracking(0)
 print(ans)
