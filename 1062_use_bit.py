@@ -1,4 +1,4 @@
-#combinationsÀÌ ¹éÆ®·¹Å·º¸´Ù ºü¸£´Ù ¿ø¼Ò°¡ Àû¾î¼­ ±×·±°¡..?
+#combinationsì´ ë°±íŠ¸ë ˆí‚¹ë³´ë‹¤ ë¹ ë¥´ë‹¤ ì›ì†Œê°€ ì ì–´ì„œ ê·¸ëŸ°ê°€..?
 
 import sys
 from itertools import combinations

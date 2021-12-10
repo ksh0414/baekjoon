@@ -1,5 +1,5 @@
-#dict¸¦ ÀÌ¿ëÇÏ´Â°Ô ÈÎ¾À ºü¸£´Ù
-#ÇØ´ç ½ÃÇà µµÁßÀÇ °úÁ¤ÀÌ °á°ú¿¡ ¿µÇâÀ» ¹ÌÄ¡¸é ¾ÈµÈ´Ù.
+#dictë¥¼ ì´ìš©í•˜ëŠ”ê²Œ í›¨ì”¬ ë¹ ë¥´ë‹¤
+#í•´ë‹¹ ì‹œí–‰ ë„ì¤‘ì˜ ê³¼ì •ì´ ê²°ê³¼ì— ì˜í–¥ì„ ë¯¸ì¹˜ë©´ ì•ˆëœë‹¤.
 from collections import defaultdict
 
 WEIGHT, VALUE = 0, 1

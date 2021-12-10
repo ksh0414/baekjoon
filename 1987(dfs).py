@@ -1,4 +1,4 @@
-#whileÀ» ÅëÇÑ bfs ºü¸£´Ù
+#whileì„ í†µí•œ bfs ë¹ ë¥´ë‹¤
 import sys
 input = sys.stdin.readline
 D = ((1, 0), (0, 1), (-1, 0), (0, -1))

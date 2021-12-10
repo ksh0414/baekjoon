@@ -12,45 +12,45 @@ def same_num_check(arr):
         nums.append(x)
     return False
 
-if l < 2 or n[1:] == '0':#swapÀ» ÇÒ ¼ö ¾ø´Â °æ¿ì
+if l < 2 or n[1:] == '0':#swapì„ í•  ìˆ˜ ì—†ëŠ” ê²½ìš°
     ans = -1
 
-else:#ÇÒ ¼ö ÀÖ´Â °æ¿ì
-    result = [int(x) for x in n]#strÇüÀ» intÇüÀ¸·Î º¯°æ
-    q = deque([(result, k, 0)])#ÃÖ¼±ÀÇ ÄÉÀÌ½º¸¦ ±¸ÇÏ±â À§ÇÑ q
-    same_num_in_result = False #°°Àº ¼ıÀÚ°¡ ÀÖ´ÂÁö È®ÀÎÇÏ±â À§ÇØ
+else:#í•  ìˆ˜ ìˆëŠ” ê²½ìš°
+    result = [int(x) for x in n]#strí˜•ì„ intí˜•ìœ¼ë¡œ ë³€ê²½
+    q = deque([(result, k, 0)])#ìµœì„ ì˜ ì¼€ì´ìŠ¤ë¥¼ êµ¬í•˜ê¸° ìœ„í•œ q
+    same_num_in_result = False #ê°™ì€ ìˆ«ìê°€ ìˆëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•´
 
-    while q:#°¢ °æ¿ì¿¡ ´ëÇÏ¿© check
+    while q:#ê° ê²½ìš°ì— ëŒ€í•˜ì—¬ check
         tmp, count, start_idx = q.popleft()
-        tmp = list(tmp)#swapÀ» À§ÇØ tupleÇüÀÇ tmp¸¦ listÇüÀ¸·Î
-        if tmp > result:#¸¸¾à result°¡ ÀÛ´Ù¸é
-            k = count #±× ÄÉÀÌ½ºÀÇ k°ª(³²Àº swapÈ½¼ö)¸¦ ÀúÀå
-            result = tmp #±× ÄÉÀÌ½ºÀÇ result¸¦ ÀúÀå
-        if count <= 0 or start_idx >= l-1: #´õÀÌ»ó swapÀ» ÇÒ ¼ö ¾ø´Ù¸é
+        tmp = list(tmp)#swapì„ ìœ„í•´ tupleí˜•ì˜ tmpë¥¼ listí˜•ìœ¼ë¡œ
+        if tmp > result:#ë§Œì•½ resultê°€ ì‘ë‹¤ë©´
+            k = count #ê·¸ ì¼€ì´ìŠ¤ì˜ kê°’(ë‚¨ì€ swapíšŸìˆ˜)ë¥¼ ì €ì¥
+            result = tmp #ê·¸ ì¼€ì´ìŠ¤ì˜ resultë¥¼ ì €ì¥
+        if count <= 0 or start_idx >= l-1: #ë”ì´ìƒ swapì„ í•  ìˆ˜ ì—†ë‹¤ë©´
             continue #continue
 
-        for i in range(start_idx, l-1): #¾Õ¿¡¼­ºÎÅÍ swapÇÒ ¼ö ÀÖ´Â °æ¿ì¸¦ Å½»ö
+        for i in range(start_idx, l-1): #ì•ì—ì„œë¶€í„° swapí•  ìˆ˜ ìˆëŠ” ê²½ìš°ë¥¼ íƒìƒ‰
             max_value = tmp[i]
             max_idx = i
             same_idx = [l-1]
-            for j in range(i+1, l): #¼øÂ÷ÀûÀ¸·Î Å½»ö
+            for j in range(i+1, l): #ìˆœì°¨ì ìœ¼ë¡œ íƒìƒ‰
                 if max_value < tmp[j]:
                     max_value = tmp[j]
                     same_idx = [j]
                     max_idx = j
-                elif max_value == tmp[j]: #°°Àº ¼ıÀÚ°¡ ÀÖ´Ù¸é
+                elif max_value == tmp[j]: #ê°™ì€ ìˆ«ìê°€ ìˆë‹¤ë©´
                     same_idx.append(j)
 
-            if max_idx != i: #iµÚ¿¡ ´õ Å« ¼ö°¡ ÀÖÀ» ¶§¸¸
-                for idx in same_idx:#°¢ ¼ıÀÚ¿¡ ´ëÇÑ case¸¦ Á¶»ç
+            if max_idx != i: #ië’¤ì— ë” í° ìˆ˜ê°€ ìˆì„ ë•Œë§Œ
+                for idx in same_idx:#ê° ìˆ«ìì— ëŒ€í•œ caseë¥¼ ì¡°ì‚¬
                     tmp[i], tmp[idx] = tmp[idx], tmp[i]
                     q.append((tuple(tmp), count-1, i+1))
                     tmp[i], tmp[idx] = tmp[idx], tmp[i]
                 break
             
-    #k > 0ÀÌ¸é result´Â Á¤·ÄµÈ »óÅÂ, k==0ÀÌ¸é result¸¦ Ãâ·Â
-    if not same_num_check(result) and k%2: #¾È¿¡ °°Àº ¼ıÀÚ°¡ ¾ø°í ³ª¸ÓÁö È½¼ö°¡ È¦¼ö¶ó¸é
-        result[-1], result[-2] = result[-2], result[-1] #¸Ç µÚÀÇ µÎ ¼ıÀÚ¸¦ ±³È¯
-    ans = "".join([str(x) for x in result]) #°°Àº ¼ıÀÚ°¡ ÀÖ°Å³ª ³ª¸ÓÁö È½¼ö°¡ Â¦¼ö¶ó¸é ±³È¯x
+    #k > 0ì´ë©´ resultëŠ” ì •ë ¬ëœ ìƒíƒœ, k==0ì´ë©´ resultë¥¼ ì¶œë ¥
+    if not same_num_check(result) and k%2: #ì•ˆì— ê°™ì€ ìˆ«ìê°€ ì—†ê³  ë‚˜ë¨¸ì§€ íšŸìˆ˜ê°€ í™€ìˆ˜ë¼ë©´
+        result[-1], result[-2] = result[-2], result[-1] #ë§¨ ë’¤ì˜ ë‘ ìˆ«ìë¥¼ êµí™˜
+    ans = "".join([str(x) for x in result]) #ê°™ì€ ìˆ«ìê°€ ìˆê±°ë‚˜ ë‚˜ë¨¸ì§€ íšŸìˆ˜ê°€ ì§ìˆ˜ë¼ë©´ êµí™˜x
 
 print(ans)
