@@ -2,13 +2,14 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 D = ((1, 0), (0, 1), (-1, 0), (0, -1))
-JUDGE = [-2, -3, 1]
+JUDGE = [-3, -2, 0]
+BLOCK = [-2, -3, 1]
 
 def bfs(a, b, v, n_s, j):
     if board[a][b] != v:
         return False
     q = deque([(a, b)])
-    board[a][b] = JUDGE[j]
+    board[a][b] = BLOCK[j]
     while q:
         #print(q)
         x, y = q.popleft()
@@ -16,12 +17,12 @@ def bfs(a, b, v, n_s, j):
             nx, ny = x+dx, y+dy
             if 0<=nx<r and 0<=ny<c:
                 if board[nx][ny] == v:
-                    board[nx][ny] = JUDGE[j]
+                    board[nx][ny] = BLOCK[j]
                     q.append((nx, ny))
                 elif board[nx][ny] == -1:
                     board[nx][ny] = v+1
                     n_s[j].append((nx,ny))
-                elif board[nx][ny] == JUDGE[(j+1)%2]:
+                elif board[nx][ny] == JUDGE[j]:
                     return True
     return False
                 
@@ -33,7 +34,7 @@ def play(v):
             if bfs(*spot[i].pop(), v, next_spot, i):
                 return True
     spot = next_spot
-    JUDGE[2] += 1
+    BLOCK[2] += 1
     return False
         
 r, c = map(int, input().split())
